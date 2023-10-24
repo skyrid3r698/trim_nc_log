@@ -16,7 +16,7 @@ if test -f "$workdir/tempx.txt"; then
     rm $workdir/tempx.txt
 fi
 echo working through $x days and write it to a temporary file: $workdir/tempx.txt
-while [ $x -gt 0 ];
+while [ $x -gt -1 ];
 do
 XOLD=`(date +"%Y-%m-%d"  --date="$x days ago")`
 let x--
