@@ -39,6 +39,10 @@ sed -i "s/'//g" $workdir/failedlogins.txt
 sed -i 's/Remote.*"://' $workdir/failedlogins.txt
 #delete "message":"Login failed:
 sed -i 's/"message":"Login failed://' $workdir/failedlogins.txt
+#remove everything after ")"
+sed -i 's/).*//g' $workdir/failedlogins.txt
+#remove every instance of (
+sed -i "s/(//g" $workdir/failedlogins.txt
 mv $workdir/failedlogins.txt ./
 
 ###########unique ips###########
