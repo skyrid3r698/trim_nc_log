@@ -35,6 +35,10 @@ sed -i 's/"user":.*message/"message'/ $workdir/failedlogins.txt
 sed -i 's/"."version.*//g' $workdir/failedlogins.txt
 #delete every instance of '
 sed -i "s/'//g" $workdir/failedlogins.txt
+#delete everything between Remote and "
+sed -i 's/Remote.*"://' $workdir/failedlogins.txt
+#delete "message":"Login failed:
+sed -i 's/"message":"Login failed://' $workdir/failedlogins.txt
 mv $workdir/failedlogins.txt ./
 
 ###########unique ips###########
