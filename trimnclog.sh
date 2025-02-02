@@ -2,7 +2,7 @@
 
 #variables
 x="360" #number of days to work through
-logdir="/home/sky"
+logdir="/mnt/raid1/data/"
 logfile="nextcloud.log"
 workdir="/tmp"
 echo trimming last $x days of $logdir/$logfile
@@ -26,7 +26,7 @@ echo set temporary file as new $workdir/$logfile
 mv $workdir/tempx.txt $workdir/$logfile
 
 ########failed logins############
-echo creating $workdir/failedlogins.txt and moving it to current directory
+echo creating $workdir/failedlogins.txt
 #delete every line without "Login failed"
 sed '/Login failed/!d' $workdir/$logfile > $workdir/failedlogins.txt
 #delete everything between "user": and message including "user":
@@ -46,7 +46,7 @@ sed -i "s/(//g" $workdir/failedlogins.txt
 mv $workdir/failedlogins.txt ./
 
 ###########unique ips###########
-echo creating $workdir/uniqueip.txt and moving it to current directory
+echo creating $workdir/uniqueip.txt
 #delete every line without "remoteAddr"
 sed '/remoteAddr/!d' $workdir/$logfile > $workdir/uniqueip.txt
 #remove every line with ajax in it
@@ -62,7 +62,7 @@ sort $workdir/uniqueip.txt | uniq -c | sort -nr > $workdir/temp.txt
 mv $workdir/temp.txt uniqueip.txt
 
 ###########unique names###########
-echo creating $workdir/uniquenames.txt and moving it to current directory
+echo creating $workdir/uniquenames.txt
 #delete every line without "remoteAddr"
 sed '/remoteAddr/!d' $workdir/$logfile > $workdir/uniquenames.txt
 #remove every line with ajax in it
